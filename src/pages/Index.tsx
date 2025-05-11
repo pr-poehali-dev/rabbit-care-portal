@@ -1,11 +1,18 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
-const BunnyTip = ({ icon, title, children }: { icon: string; title: string; children: React.ReactNode }) => (
+const BunnyTip = ({
+  icon,
+  title,
+  children,
+}: {
+  icon: string;
+  title: string;
+  children: React.ReactNode;
+}) => (
   <div className="flex gap-3 border rounded-lg p-4 shadow-sm">
     <div className="shrink-0 bg-[#FDE1D3] rounded-full h-10 w-10 flex items-center justify-center">
       <Icon name={icon} className="text-orange-600" />
@@ -17,7 +24,15 @@ const BunnyTip = ({ icon, title, children }: { icon: string; title: string; chil
   </div>
 );
 
-const BunnyFeatureCard = ({ title, description, icon }: { title: string; description: string; icon: string }) => (
+const BunnyFeatureCard = ({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: string;
+}) => (
   <Card className="h-full">
     <CardHeader className="pb-2">
       <div className="w-10 h-10 rounded-full bg-[#E5DEFF] flex items-center justify-center mb-3">
@@ -33,59 +48,67 @@ const BunnyFeatureCard = ({ title, description, icon }: { title: string; descrip
 
 const Index = () => {
   const [currentCategory, setCurrentCategory] = useState<string>("все");
-  
+
   const navLinks = [
     { title: "Питание", icon: "UtensilsCrossed", path: "/nutrition" },
     { title: "Здоровье", icon: "HeartPulse", path: "/health" },
     { title: "Уход", icon: "Brush", path: "/care" },
-    { title: "Разведение", icon: "Baby", path: "/breeding" },
     { title: "Игрушки", icon: "Gamepad2", path: "/toys" },
   ];
 
-  const categories = ["все", "питание", "здоровье", "уход", "разведение"];
+  const categories = ["все", "питание", "здоровье", "уход"];
 
   const featuredArticles = [
-    { 
-      title: "Основы правильного питания кроликов", 
+    {
+      title: "Основы правильного питания кроликов",
       category: "питание",
-      description: "Узнайте, какие продукты необходимы для сбалансированного рациона вашего питомца.",
-      icon: "Apple"
+      description:
+        "Узнайте, какие продукты необходимы для сбалансированного рациона вашего питомца.",
+      icon: "Apple",
     },
-    { 
-      title: "Ежегодные прививки", 
+    {
+      title: "Ежегодные прививки",
       category: "здоровье",
-      description: "График прививок и необходимая профилактика для поддержания здоровья кролика.",
-      icon: "Syringe"
+      description:
+        "График прививок и необходимая профилактика для поддержания здоровья кролика.",
+      icon: "Syringe",
     },
-    { 
-      title: "Как правильно стричь когти", 
+    {
+      title: "Как правильно стричь когти",
       category: "уход",
-      description: "Пошаговая инструкция и советы по безопасной стрижке когтей у кроликов.",
-      icon: "Scissors"
+      description:
+        "Пошаговая инструкция и советы по безопасной стрижке когтей у кроликов.",
+      icon: "Scissors",
     },
-    { 
-      title: "Обустройство клетки", 
+    {
+      title: "Обустройство клетки",
       category: "уход",
-      description: "Как создать комфортное и безопасное пространство для вашего кролика.",
-      icon: "Home"
+      description:
+        "Как создать комфортное и безопасное пространство для вашего кролика.",
+      icon: "Home",
     },
-    { 
-      title: "Признаки болезней", 
+    {
+      title: "Признаки болезней",
       category: "здоровье",
-      description: "На что обратить внимание, чтобы вовремя заметить проблемы со здоровьем.",
-      icon: "Stethoscope"
+      description:
+        "На что обратить внимание, чтобы вовремя заметить проблемы со здоровьем.",
+      icon: "Stethoscope",
     },
-    { 
-      title: "Подготовка к потомству", 
-      category: "разведение",
-      description: "Советы для начинающих заводчиков по подготовке к появлению крольчат.",
-      icon: "Baby"
+    {
+      title: "Сезонная линька",
+      category: "уход",
+      description:
+        "Как ухаживать за кроликом во время линьки и поддерживать чистоту в доме.",
+      icon: "SunSnowflake",
     },
   ];
 
-  const filteredArticles = currentCategory === "все" 
-    ? featuredArticles 
-    : featuredArticles.filter(article => article.category === currentCategory);
+  const filteredArticles =
+    currentCategory === "все"
+      ? featuredArticles
+      : featuredArticles.filter(
+          (article) => article.category === currentCategory,
+        );
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
@@ -98,9 +121,9 @@ const Index = () => {
           </div>
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                to={link.path} 
+              <Link
+                key={link.path}
+                to={link.path}
                 className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-purple-600 transition-colors"
               >
                 <Icon name={link.icon} size={16} />
@@ -108,7 +131,6 @@ const Index = () => {
               </Link>
             ))}
           </div>
-          <Button className="bg-[#9b87f5] hover:bg-[#7E69AB]">Войти</Button>
         </div>
       </nav>
 
@@ -117,16 +139,17 @@ const Index = () => {
         <div className="container flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 font-playfair leading-tight">
-              Забота о вашем <span className="text-[#9b87f5]">пушистом</span> друге
+              Забота о вашем <span className="text-[#9b87f5]">пушистом</span>{" "}
+              друге
             </h1>
             <p className="text-lg text-gray-700 mb-6">
-              Всё, что нужно знать о содержании и уходе за кроликами в одном месте
+              Всё, что нужно знать о содержании и уходе за кроликами в одном
+              месте
             </p>
             <div className="flex gap-3">
               <Button className="bg-[#9b87f5] hover:bg-[#7E69AB]">
                 Полезные статьи
               </Button>
-              <Button variant="outline">Подобрать породу</Button>
             </div>
           </div>
           <div className="md:w-1/2 flex justify-center">
@@ -145,13 +168,16 @@ const Index = () => {
           <h2 className="text-2xl font-bold mb-8 font-playfair">Важно знать</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <BunnyTip icon="Apple" title="Правильное питание">
-              Основу рациона должно составлять сено (80%). Дополняйте его свежими овощами и специальным кормом.
+              Основу рациона должно составлять сено (80%). Дополняйте его
+              свежими овощами и специальным кормом.
             </BunnyTip>
             <BunnyTip icon="AlertTriangle" title="Токсичные продукты">
-              Избегайте давать кроликам авокадо, шоколад, лук, чеснок и продукты с высоким содержанием крахмала.
+              Избегайте давать кроликам авокадо, шоколад, лук, чеснок и продукты
+              с высоким содержанием крахмала.
             </BunnyTip>
             <BunnyTip icon="ThermometerSun" title="Температурный режим">
-              Оптимальная температура для содержания кроликов — от 15 до 24 градусов Цельсия.
+              Оптимальная температура для содержания кроликов — от 15 до 24
+              градусов Цельсия.
             </BunnyTip>
           </div>
         </div>
@@ -160,25 +186,33 @@ const Index = () => {
       {/* Featured Articles */}
       <section className="py-12 bg-[#FAFAFA]">
         <div className="container">
-          <h2 className="text-2xl font-bold mb-2 font-playfair">Полезные статьи</h2>
-          <p className="text-muted-foreground mb-6">Изучите наши материалы для заботы о вашем питомце</p>
-          
+          <h2 className="text-2xl font-bold mb-2 font-playfair">
+            Полезные статьи
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Изучите наши материалы для заботы о вашем питомце
+          </p>
+
           <div className="flex flex-wrap gap-2 mb-8">
             {categories.map((category) => (
-              <Button 
+              <Button
                 key={category}
                 variant={currentCategory === category ? "default" : "outline"}
-                className={currentCategory === category ? "bg-[#9b87f5] hover:bg-[#7E69AB]" : ""}
+                className={
+                  currentCategory === category
+                    ? "bg-[#9b87f5] hover:bg-[#7E69AB]"
+                    : ""
+                }
                 onClick={() => setCurrentCategory(category)}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </Button>
             ))}
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredArticles.map((article, index) => (
-              <BunnyFeatureCard 
+              <BunnyFeatureCard
                 key={index}
                 title={article.title}
                 description={article.description}
@@ -192,28 +226,35 @@ const Index = () => {
       {/* Call to action */}
       <section className="py-16 bg-[#9b87f5] text-white">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-4 font-playfair">Присоединяйтесь к сообществу</h2>
+          <h2 className="text-3xl font-bold mb-4 font-playfair">
+            Познавайте больше о кроликах
+          </h2>
           <p className="mb-6 max-w-xl mx-auto">
-            Зарегистрируйтесь, чтобы получить доступ к эксклюзивным материалам, задавать вопросы экспертам и общаться с другими владельцами кроликов
+            На нашем сайте вы найдете полезную информацию о содержании, уходе и
+            особенностях жизни кроликов
           </p>
-          <Button variant="secondary" size="lg">Зарегистрироваться</Button>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-800 text-gray-300 py-8">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">КроликГид</h3>
-              <p className="text-sm">Всё для счастливой жизни вашего пушистого друга</p>
+              <p className="text-sm">
+                Всё для счастливой жизни вашего пушистого друга
+              </p>
             </div>
             <div>
               <h4 className="font-medium mb-3">Разделы</h4>
               <ul className="space-y-2 text-sm">
                 {navLinks.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="hover:text-white transition-colors">
+                    <Link
+                      to={link.path}
+                      className="hover:text-white transition-colors"
+                    >
                       {link.title}
                     </Link>
                   </li>
@@ -223,17 +264,31 @@ const Index = () => {
             <div>
               <h4 className="font-medium mb-3">Ресурсы</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/faq" className="hover:text-white transition-colors">Часто задаваемые вопросы</Link></li>
-                <li><Link to="/dictionary" className="hover:text-white transition-colors">Словарь терминов</Link></li>
-                <li><Link to="/books" className="hover:text-white transition-colors">Рекомендуемые книги</Link></li>
+                <li>
+                  <Link
+                    to="/faq"
+                    className="hover:text-white transition-colors"
+                  >
+                    Часто задаваемые вопросы
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dictionary"
+                    className="hover:text-white transition-colors"
+                  >
+                    Словарь терминов
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/books"
+                    className="hover:text-white transition-colors"
+                  >
+                    Рекомендуемые книги
+                  </Link>
+                </li>
               </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-3">Контакты</h4>
-              <p className="text-sm mb-4">Свяжитесь с нами, если у вас есть вопросы или предложения</p>
-              <Button variant="outline" className="text-white border-white hover:bg-white/10">
-                Обратная связь
-              </Button>
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-gray-700 text-sm text-center">
